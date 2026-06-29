@@ -356,15 +356,6 @@
     time: time
   });
 }
-    const formatted = new Date(date + 'T12:00:00').toLocaleDateString('en-US', {
-      weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'
-    });
-
-    document.getElementById('dateDisplay').textContent = formatted + ' · ' + time;
-
-    document.getElementById('screen2').classList.remove('active');
-    document.getElementById('screen3').classList.add('active');
-  }
 </script>
 
 </body>
