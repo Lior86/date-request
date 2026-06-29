@@ -238,6 +238,7 @@
     line-height: 1.7;
   }
 </style>
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 </head>
 <body>
 
@@ -333,14 +334,28 @@
   }
 
   function confirmDate() {
-    const date = document.getElementById('datePicker').value;
-    const time = document.getElementById('timePicker').value;
+  const date = document.getElementById('datePicker').value;
+  const time = document.getElementById('timePicker').value;
 
-    if (!date || !time) {
-      alert('Pick a day and time first 🌸');
-      return;
-    }
+  if (!date || !time) {
+    alert('Pick a day and time first 🌸');
+    return;
+  }
 
+  const formatted = new Date(date + 'T12:00:00').toLocaleDateString('en-US', {
+    weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'
+  });
+
+  document.getElementById('dateDisplay').textContent = formatted + ' · ' + time;
+  document.getElementById('screen2').classList.remove('active');
+  document.getElementById('screen3').classList.add('active');
+
+  emailjs.init('wYTuPx7whK6KixRUb');
+  emailjs.send('service_3kczdmf', 'lb0mab7', {
+    date: formatted,
+    time: time
+  });
+}
     const formatted = new Date(date + 'T12:00:00').toLocaleDateString('en-US', {
       weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'
     });
